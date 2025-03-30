@@ -1,12 +1,21 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Home\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\User\UserController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get("/", [HomeController::class, "homePage"])->name("homepage");
+
+Route::get("/admin/dashboard", [AdminController::class, "adminDashboard"])->name("admin.dashboard");
+
+Route::get("/user/dashboard", [UserController::class, "UserDashboard"])->name("user.dashboard");
+
+
+
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
