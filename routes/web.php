@@ -10,9 +10,25 @@ use Inertia\Inertia;
 
 Route::get("/", [HomeController::class, "homePage"])->name("homepage");
 
-Route::get("/admin/dashboard", [AdminController::class, "adminDashboard"])->name("admin.dashboard");
 
-Route::get("/user/dashboard", [UserController::class, "UserDashboard"])->name("user.dashboard");
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+
+    Route::get("/admin/dashboard", [AdminController::class, "adminDashboard"])->name("admin.dashboard");
+
+
+});
+
+Route::middleware(['auth', 'role:user'])->group(function () {
+
+    Route::get("/user/dashboard", [UserController::class, "UserDashboard"])->name("user.dashboard");
+
+
+});
+
+
+
+
 
 
 
